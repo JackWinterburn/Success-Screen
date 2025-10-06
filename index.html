@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vault Secured</title>
+  <title>Vault Access</title>
   <style>
     body {
       margin: 0;
@@ -44,6 +44,32 @@
 </head>
 <body>
   <div class="background"></div>
-  <h1>Vault Secured</h1>
+  <h1 id="message"></h1>
+
+  <script>
+    const pwds = ["f1ncr1m3", "n3tw0rk", "s3cur1ty", "1nc1d3nt", "t3chn0l0gy", "n3tw0rth", "1nf0rm4t10n", "c0mput3r", "wh1t3_h4t"];
+    const messageEl = document.getElementById("message");
+
+    function requestPassword() {
+      const userPwd = prompt("Enter password to access the vault:");
+      if (userPwd === null) {
+        // User clicked cancel
+        messageEl.textContent = "Access Cancelled";
+        document.body.style.background = "#ff0000";
+        return;
+      }
+
+      if (pwds.includes(userPwd)) {
+        messageEl.textContent = "Vault Secured";
+        document.body.style.background = "#00ff00";
+      } else {
+        alert("Incorrect password. Try again.");
+        requestPassword(); // Retry until correct
+      }
+    }
+
+    // Run immediately when page loads
+    requestPassword();
+  </script>
 </body>
 </html>
